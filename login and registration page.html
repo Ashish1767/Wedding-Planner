@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <title> login and registration page for wedding website</title>
+        <link rel="stylesheet" href="page.css">
+		    </head>
+    <body>
+	
+               <div class="first">
+          <div class="box">
+		  <div class="button-box">
+              <div id="button"></div>
+		    <button type="button" class="btn" onclick="login()">Log In</button>
+             <button type="button" class="btn" onclick="register()">Register</button> 
+            </div>
+			<form action="dashboard1.php"  method="post" id="login" class="info"> 
+			  <input name="username" type="text" class="info_1" placeholder="User Id" required >
+			  <input name="password" type="password" class="info_1" placeholder="Enter Password" required >
+			<input type="checkbox" class="check_box"><span color="green"> Remember Password</span>
+			<input type="submit" class="submit" value="login">
+			</form>
+			<form   onsubmit="validate(this)" action="dashboard.php"  method="post" id="register" class="info"> 
+			  <input  name="username" type="text"  class="info_1" placeholder="User Id" required>
+			 <input  name="useremail" type="email" class="info_1" placeholder="Email-Id"  required>
+			 <input name="password"  type="password" class="info_1" placeholder="Enter Password" required>
+			<input type="checkbox" class="check_box" required><span color="green" required> I agree to all the terms and conditions</span>
+			<input type="submit" class="submit" value="register">
+			</form>
+        </div>
+   </div>
+   <script>
+   var a= document.getElementById("login");
+   var b= document.getElementById("register");
+   var c= document.getElementById("button");
+    function register(){
+	a.style.left= "-400px";
+	b.style.left= "50px";
+	c.style.left= "110px";
+	}
+	function login(){
+	a.style.left= "50px";
+	b.style.left= "400px";
+	c.style.left= "0px";
+	}
+
+        function validate(form)
+	{
+	    fail=validateUsername(form.username.value);
+		fail+=validatePassword(form.password.value);
+	    fail+=validateUseremail(form.useremail.value);		
+
+		
+		if (fail == "") return true
+		else {alert(fail); return false}
+	}
+	function validateUsername(feild)
+	{
+		if(feild=="") return "No Name was entered\n"
+		else if (/[^A-Za-z]/.test(feild))
+		return "Invalid Name\n";
+		
+		return "";
+	}
+	function validatePassword(feild)
+	{
+	    if(feild=="") return "No Password entered\n"
+		
+		else if (feild.length<5)
+		return "Password is too short. \n";
+		return "";
+	}
+	function validateUseremail(feild)
+    {
+           let reg=/^([a-zA-Z0-9]+)@([a-zA-Z]+)\.([a-zA-Z]){3,7}/;
+            if(reg.test(feild))
+            {
+                return "";
+            }
+            else if(feild=="")
+            {
+                    return "Email id not entered\n";
+					  
+			}
+            else{
+                return "Invalid Email\n";
+				
+            }
+    }
+	</script>
+	</body>
+</html>
